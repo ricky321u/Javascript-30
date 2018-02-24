@@ -7,6 +7,19 @@
 </head>
 <body>
 <script>
+	const pressed = []
+	const serectCode = 'wesbos'
+	window.addEventListener('keyup', (e) => {
+		console.log(e.key)
+		const pressedKey = e.key
+		pressed.push(pressedKey)
+		pressed.splice(-serectCode.length -1, pressed.length - serectCode.length)
+		if (pressed.join('').includes(serectCode)) {
+			console.log('ding')
+			cornify_add()
+		}
+		console.log(pressed)
+	})
 </script>
 </body>
 </html>

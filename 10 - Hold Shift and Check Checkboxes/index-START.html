@@ -33,7 +33,7 @@
 
     input:checked + p {
       background:#F9F9F9;
-      text-decoration: line-through;
+			text-decoration: line-through;
     }
 
     input[type="checkbox"] {
@@ -99,6 +99,29 @@
   </div>
 
 <script>
+const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]')
+let lastChecked
+
+function handleClick(e) {
+	let inBetween = false
+	console.log(lastChecked)
+	if (e.shiftKey && this.checked) {
+    checkboxes.forEach(checkbox => {
+      console.log(checkbox);
+      if (checkbox === this || checkbox === lastChecked) {
+        inBetween = !inBetween;
+        console.log('Starting to check them inbetween!');
+      }
+
+      if (inBetween) {
+        checkbox.checked = true;
+      }
+    });
+	}
+	lastChecked = this;
+}
+
+checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleClick))
 </script>
 </body>
 </html>
